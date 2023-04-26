@@ -54,34 +54,38 @@ class SignUp_1 extends StatelessWidget {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(right: 120),
-              child: Image.asset(
-                'assets/images/hello_bot.jpg',
-                width: 200,
-                height: 200,
-              ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(),
+                child: Image.asset(
+                  'assets/images/hello_bot.jpg',
+                  width: 200,
+                  height: 200,
+                ),
+              ).pOnly(),
             ),
-            Row(
-              children: const [
-                Text(
-                  "Create ",
-                  style: TextStyle(
-                    fontSize: 33,fontFamily: 'abel',
-                    fontWeight: FontWeight.w900,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                  ),
-                ),
-                Text(
-                  "Account",
-                  style: TextStyle(
-                      fontSize: 33,
-                      fontFamily: 'abel',
+            Center(
+              child: Row(
+                children: const [
+                  Text(
+                    "Create ",
+                    style: TextStyle(
+                      fontSize: 33,fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
-                      color: Color.fromARGB(187, 0, 115, 255)),
-                ),
-              ],
-            ).pOnly(left: 20, bottom: 40),
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
+                  Text(
+                    "Account",
+                    style: TextStyle(
+                        fontSize: 33,
+                        fontFamily: 'abel',
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromARGB(187, 0, 115, 255)),
+                  ),
+                ],
+              ).pOnly(left: 80, bottom: 60),
+            ),
 
             // Text Field: Name
             Form(
@@ -144,9 +148,9 @@ class SignUp_1 extends StatelessWidget {
                       ).pOnly(left: 15),
                     ),
                     validator: (value) {
-                      // if (value!.isEmpty) {
-                      //   return "This cannot be empy";
-                      // }
+                      if (value!.isEmpty) {
+                        return "This cannot be empy";
+                      }
 
                       return null;
                     },
@@ -213,13 +217,13 @@ class SignUp_1 extends StatelessWidget {
                         ).pOnly(left: 15),
                       ),
                       validator: (value) {
-                        // if (value!.isEmpty) {
-                        //   return "This cannot be empy";
-                        // } else if (value.length > 10 ||
-                        //     value.length < 10 ||
-                        //     value.isLetter()) {
-                        //   return "Enter valid mobile number";
-                        // }
+                        if (value!.isEmpty) {
+                          return "This cannot be empy";
+                        } else if (value.length > 10 ||
+                            value.length < 10 ||
+                            value.isLetter()) {
+                          return "Enter valid mobile number";
+                        }
                         return null;
                       },
                       onChanged: (num) {

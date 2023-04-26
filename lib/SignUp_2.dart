@@ -89,7 +89,7 @@ class SignUp_2 extends StatelessWidget {
               ],
             ),
 
-            Row(
+            Row(mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
                   "Personal ",
@@ -109,9 +109,9 @@ class SignUp_2 extends StatelessWidget {
                       color: Color.fromARGB(187, 0, 115, 255)),
                 ),
               ],
-            ).pOnly(left: 20, bottom: 10, top: 80),
+            ).pOnly( bottom: 10, top: 80),
 
-            Row(
+            Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                       "Email ID, Address, City ",
@@ -123,7 +123,7 @@ class SignUp_2 extends StatelessWidget {
                           color: Color.fromARGB(185, 172, 172, 172)),
                     ),
               ],
-            ).pOnly(bottom: 55, left: 22),
+            ).pOnly( bottom: 55),
 
             // Text Field: Address
             Form(
@@ -436,6 +436,8 @@ class SignUp_2 extends StatelessWidget {
               print(address);
               print(city);
               print(zipCode);
+
+              Navigator.pushNamed(context, Raste.singUp_3);
               }
 
               // else if (signUp_key2.currentState!.validate()){
