@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 
-final signUp_key = GlobalKey<FormState>();
 String name = "";
 String mobileNum = "";
 
@@ -240,9 +239,7 @@ class SignUp_1 extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (signUp_key.currentState!.validate()) {
-                  Navigator.pushNamed(
-                  context, Raste.signUp_2
-                );
+                  Navigator.pushNamed(context, Raste.signUp_2);
               } 
                 return;
               },

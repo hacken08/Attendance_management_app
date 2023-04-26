@@ -19,7 +19,7 @@ String address = "";
 String city = "";
 String zipCode = "";
 
-final signUp_key = GlobalKey<FormState>();
+// final signUp_key_2 = GlobalKey<FormState>();
 
 class SignUp_2 extends StatelessWidget {
   const SignUp_2({super.key});
@@ -35,11 +35,7 @@ class SignUp_2 extends StatelessWidget {
             Row(
               children: [
                InkWell(
-                onTap: () {
-                   Navigator.pushNamed(
-                  context, Raste.signUp_1
-                );
-              },
+                onTap: () { },
                  child: Container(
                     width: 120,
                     height: 60,
@@ -276,10 +272,10 @@ class SignUp_2 extends StatelessWidget {
 
           // 
           Form(
-            // key: signUp_key2,
+            key: signUp_key,
             child: Row(
               children: [
-                Container(width: 190.2,
+                Container(width: 195.2,
                   child: TextFormField(
             
                         cursorRadius: const Radius.circular(20),
@@ -345,11 +341,11 @@ class SignUp_2 extends StatelessWidget {
                         onChanged: (value) {
                           city = value;
                         },
-                      ),
+                      ).pOnly(left: 9),
                 ).pOnly(right: 25),
             
             
-              Container(width: 170.2,
+              Container(width: 150.2,
             
                  // labelText: "Zip Code",
                   child: TextFormField(
@@ -429,20 +425,13 @@ class SignUp_2 extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (signUp_key.currentState!.validate()) {
-                  
-              print(name);
-              print(mobileNum);
-              print(emailId);
-              print(address);
-              print(city);
-              print(zipCode);
 
               Navigator.pushNamed(context, Raste.singUp_3);
               }
 
-              // else if (signUp_key2.currentState!.validate()){
-              //     Navigator.pushNamed(context, Raste.signUp_1);
-              // }
+              else if (signUp_key.currentState!.validate()){
+                  Navigator.pushNamed(context, Raste.signUp_1);
+              }
             },
               borderRadius: BorderRadius.circular(40),
               splashColor: const Color.fromARGB(255, 84, 162, 251),

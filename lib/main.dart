@@ -8,9 +8,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 
 void main() => runApp(const SignUp());
+
+final signUp_key = GlobalKey<FormState>();
 
 class Raste {
   static String signUp_1 = "/";
@@ -29,11 +32,11 @@ class SignUp extends StatelessWidget {
         brightness: Brightness.dark
       ),
         home: MaterialApp(
-          home: SignUp_3(),
+          // home: SignUp_3(),
           routes: {
-            // Raste.signUp_1: (context) => const SignUp_1(),
-            // Raste.signUp_2: (context) => const SignUp_2(),
-            // Raste.singUp_3: (context) => const SignUp_3(),
+            Raste.signUp_1: (context) => const SignUp_1(),
+            Raste.signUp_2: (context) => const SignUp_2(),
+            Raste.singUp_3: (context) => SignUp_3(),
           },
         ),
     );
