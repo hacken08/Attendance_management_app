@@ -39,15 +39,15 @@ class SignUp extends StatelessWidget {
         brightness: Brightness.dark
       ),
         home: MaterialApp(
-          home: First_page(),
+          // home: First_page(),
           routes: {
-            // Raste.firstPage: (context) => const First_page(),
-            // Raste.signUp_1: (context) => const SignUp_1(),
-            // Raste.signUp_2: (context) => const SignUp_2(),
-            // Raste.singUp_3: (context) => SignUp_3(),
-            // Raste.institue_login: (context) => Institute_login(),
-            // Raste.staff_loing: (context) => Staff_Login(),
-            // Raste.student_login: (context) => Student_Login(),
+            Raste.firstPage: (context) => const First_page(),
+            Raste.signUp_1: (context) => const SignUp_1(),
+            Raste.signUp_2: (context) => const SignUp_2(),
+            Raste.singUp_3: (context) => SignUp_3(),
+            Raste.institue_login: (context) => Institute_login(),
+            Raste.staff_loing: (context) => Staff_Login(),
+            Raste.student_login: (context) => Student_Login(),
           },
         ),
     );
