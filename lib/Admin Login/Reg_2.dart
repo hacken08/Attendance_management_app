@@ -12,7 +12,7 @@ import 'package:meta/dart2js.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
-import 'SignUp1.dart';
+import 'Reg_1.dart';
 
 String emailId = "";
 String address = "";
@@ -35,7 +35,7 @@ class SignUp_2 extends StatelessWidget {
             Row(
               children: [
                InkWell(
-                onTap: () { },
+                onTap: () { Navigator.pushNamed(context, Raste.signUp_1); },
                  child: Container(
                     width: 120,
                     height: 60,
@@ -58,11 +58,11 @@ class SignUp_2 extends StatelessWidget {
                  ),
                ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 130, top: 70),
+                  padding: const EdgeInsets.only(left: 150, top: 70),
                   child: Transform(
                     transform: Matrix4.identity()..rotateZ(12.4),
                     child: Container(
-                      width: 160,
+                      width: 140,
                       height: 115,
                       decoration: const BoxDecoration(
                         boxShadow: [BoxShadow(blurRadius: 1.3)],
@@ -88,22 +88,23 @@ class SignUp_2 extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
-                  "Personal ",
+                  "Admin ",
                   style: TextStyle(
                     fontFamily: 'abel',
                     fontSize: 33,
-                    letterSpacing: 1,
+                    // letterSpacing: 1,
                     fontWeight: FontWeight.w900,
                     color: Color.fromARGB(255, 0, 0, 0),
                   ),
                 ),
                 Text(
-                  "Detail",
-                  style: TextStyle(
-                      fontSize: 33,
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromARGB(187, 0, 115, 255)),
-                ),
+                    "Register",
+                    style: TextStyle(
+                      fontFamily: 'abel',
+                        fontSize: 33,
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromARGB(187, 0, 115, 255)),
+                  ),
               ],
             ).pOnly( bottom: 10, top: 80),
 
@@ -123,7 +124,7 @@ class SignUp_2 extends StatelessWidget {
 
             // Text Field: Address
             Form(
-              key: signUp_key,
+              // key: signUp_key,
               child: Stack(
                 children: [
                   Padding(
@@ -272,7 +273,7 @@ class SignUp_2 extends StatelessWidget {
 
           // 
           Form(
-            key: signUp_key,
+            // key: signUp_key2,
             child: Row(
               children: [
                 Container(width: 195.2,
@@ -424,14 +425,14 @@ class SignUp_2 extends StatelessWidget {
 
             InkWell(
               onTap: () {
-                if (signUp_key.currentState!.validate()) {
+                // if (signUp_key.currentState!.validate()) {
 
               Navigator.pushNamed(context, Raste.singUp_3);
-              }
+              // }
 
-              else if (signUp_key.currentState!.validate()){
-                  Navigator.pushNamed(context, Raste.signUp_1);
-              }
+              // else if (signUp_key2.currentState!.validate()){
+              //     Navigator.pushNamed(context, Raste.signUp_1);
+              // }
             },
               borderRadius: BorderRadius.circular(40),
               splashColor: const Color.fromARGB(255, 84, 162, 251),

@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'main.dart';
-import 'SignUp1.dart';
-import 'SignUp_2.dart';
+import '../main.dart';
+import 'Reg_1.dart';
+import 'Reg_2.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 
 class SignUp_3 extends StatefulWidget {
@@ -31,8 +31,8 @@ class _SignUp_3State extends State<SignUp_3> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Form( key: signUp_key,
-          child: Column(
+        // body: Form( key: signUp_key,
+          body: Column(
             children: [
               Row(
                 children: [
@@ -90,19 +90,20 @@ class _SignUp_3State extends State<SignUp_3> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text(
-                    "Personal ",
+               Text(
+                  "Admin ",
+                  style: TextStyle(
+                    fontFamily: 'abel',
+                    fontSize: 33,
+                    // letterSpacing: 1,
+                    fontWeight: FontWeight.w900,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+                Text(
+                    "Register",
                     style: TextStyle(
                       fontFamily: 'abel',
-                      fontSize: 33,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ),
-                  ),
-                  Text(
-                    "Detail",
-                    style: TextStyle(
                         fontSize: 33,
                         fontWeight: FontWeight.w900,
                         color: Color.fromARGB(187, 0, 115, 255)),
@@ -114,7 +115,7 @@ class _SignUp_3State extends State<SignUp_3> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    "Email ID, Address, City ",
+                    "Role, Gender ",
                     style: TextStyle(
                         fontFamily: 'abel',
                         letterSpacing: 1,
@@ -146,7 +147,7 @@ class _SignUp_3State extends State<SignUp_3> {
                               borderRadius: BorderRadius.all(Radius.circular(20.0))
                               ),
         
-                          border:  const UnderlineInputBorder(
+                          border:  const OutlineInputBorder(
                             borderSide: BorderSide(  
                             color: Color.fromARGB(255, 0, 0, 0)),
                               borderRadius: BorderRadius.all(Radius.circular(20.0))
@@ -262,6 +263,10 @@ class _SignUp_3State extends State<SignUp_3> {
               
                 InkWell(
                 onTap: () {
+
+                  if (_selectedRole == "Role") {
+                    _selectedRole = "No Role selected";
+                  }
                 print(_selectedRole);
                 print(gender);
                 print(name);
@@ -311,7 +316,6 @@ class _SignUp_3State extends State<SignUp_3> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
