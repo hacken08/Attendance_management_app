@@ -1,16 +1,19 @@
 // import 'dart:html';
-// ignore_for_file: unnecessary_const, avoid_print
+// ignore_for_file: unnecessary_const, avoid_print, unused_import, sized_box_for_whitespace
 
-import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../main.dart';
 import 'Reg_1.dart';
 import 'Reg_2.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
+
+  String _selectedRole = "Role";
+  final _roleList = ["Admin", "Institute", "Staff", "Teacher"];
+  int radio = 1;
+  String gender = "";
 
 class SignUp_3 extends StatefulWidget {
   SignUp_3({super.key});
@@ -18,21 +21,17 @@ class SignUp_3 extends StatefulWidget {
   @override
   State<SignUp_3> createState() => _SignUp_3State();
 }
-  // final _key = GlobalKey<FormState> ();
 
+// ignore: camel_case_types
 class _SignUp_3State extends State<SignUp_3> {
-  final _genderList = ["Admin", "Institute", "Staff", "Teacher"];
-
-  String _selectedRole = "Role";
-  int radio = 1;
-  String gender = "";
+  
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        // body: Form( key: signUp_key,
-          body: Column(
+        body: SingleChildScrollView(
+          child: Column(
             children: [
               Row(
                 children: [
@@ -106,11 +105,12 @@ class _SignUp_3State extends State<SignUp_3> {
                       fontFamily: 'abel',
                         fontSize: 33,
                         fontWeight: FontWeight.w900,
-                        color: Color.fromARGB(187, 0, 115, 255)),
+                        color: Color.fromARGB(187, 0, 115, 255)
+                    ),
                   ),
                 ],
               ).pOnly(bottom: 10, top: 80),
-        
+          
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -125,9 +125,8 @@ class _SignUp_3State extends State<SignUp_3> {
                   ),
                 ],
               ).pOnly(bottom: 55),
-        
-              // RadioListTile(value: value, groupValue: groupValue, onChanged: onChanged),
-        
+
+              
               Container(
                 width: 310,
                 child: DropdownButtonFormField<String>(
@@ -137,27 +136,27 @@ class _SignUp_3State extends State<SignUp_3> {
               
                     decoration:  InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
-                          fillColor: Color.fromARGB(51, 255, 255, 255),
+                          fillColor: const Color.fromARGB(51, 255, 255, 255),
                           // filled: false,
-        
+          
                              focusedErrorBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
                               style: BorderStyle.solid,
                               color: Color.fromARGB(255, 213, 11, 11)),
                               borderRadius: BorderRadius.all(Radius.circular(20.0))
                               ),
-        
+          
                           border:  const OutlineInputBorder(
                             borderSide: BorderSide(  
                             color: Color.fromARGB(255, 0, 0, 0)),
                               borderRadius: BorderRadius.all(Radius.circular(20.0))
                              ),
-        
+          
                               focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
                               borderRadius: BorderRadius.all(Radius.circular(20.0))
                               ),
-        
+          
                           // labelText: "Role",
                           label: Row(
                             children: const [
@@ -172,7 +171,7 @@ class _SignUp_3State extends State<SignUp_3> {
                               )
                             ],
                           ).pOnly( ),
-        
+          
                           prefixIcon: const GradientIcon(
                             Icons.person_add,
                             size: 32,
@@ -184,8 +183,8 @@ class _SignUp_3State extends State<SignUp_3> {
                               begin: Alignment.bottomCenter,
                             ),  
                           ).pOnly(left: 15, right: 20),
-        
-        
+          
+          
                         ),
                     iconSize: 45,
                     icon: const GradientIcon(
@@ -199,9 +198,9 @@ class _SignUp_3State extends State<SignUp_3> {
                       ),
                     ).pOnly(right: 13),
               
-                    items: _genderList
-                        .map((gender) => DropdownMenuItem(
-                              value: gender,
+                    items: _roleList
+                        .map((role) => DropdownMenuItem(
+                              value: role,
                               child: Row(
                                 children: [
                                   // const Icon(
@@ -209,21 +208,20 @@ class _SignUp_3State extends State<SignUp_3> {
                                   //   size: 13,
                                   //   color: Color.fromARGB(255, 129, 37, 152),
                                   // ).pOnly(left: 15, right: 15),
-                                  Text(gender)
+                                  Text(role)
                                 ],
                               ),
                             ))
                         .toList(),
-                    // value: _selectedGender,
               
                     onChanged: (genderList) {
                       setState(() {
                         _selectedRole  = genderList as String;
                       });
-
+        
                     }),
               ).pOnly(right: 40, bottom: 30),
-        
+          
               Row(
                 children: [
                   Radio(
@@ -241,7 +239,7 @@ class _SignUp_3State extends State<SignUp_3> {
                   "Male".text.fontFamily('abel').size(15).make()
                 ],
               ).pOnly(left: 40),
-        
+          
               Row(
                 children: [
                   Radio(
@@ -262,23 +260,15 @@ class _SignUp_3State extends State<SignUp_3> {
               ).pOnly(left: 40, bottom: 145),
               
                 InkWell(
-                onTap: () {
-
-                  if (_selectedRole == "Role") {
-                    _selectedRole = "No Role selected";
-                  }
-                print(_selectedRole);
-                print(gender);
-                print(name);
-                print(mobileNum);
-                print(emailId);
-                print(address);
-                print(city);
-                print(zipCode);
+                onTap: () => {
+                   if (_selectedRole == "Role") {
+                     _selectedRole = "No Role selected"
+                    },
+                    Navigator.pushNamed(context, Raste.signUp_4)
                 },
                 borderRadius: BorderRadius.circular(40),
                 splashColor: const Color.fromARGB(255, 84, 162, 251),
-        
+          
                 child: Ink(
                     width: 150,
                     height: 60,
@@ -301,13 +291,13 @@ class _SignUp_3State extends State<SignUp_3> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "Submit",
+                          "Next",
                           style: TextStyle(
                               fontSize: 18,
                               color: Color.fromARGB(255, 255, 255, 255)),
                         ).pOnly(right: 12, left: 20),
                         const Icon(
-                          Icons.done_sharp, size: 24, weight: 80.0,
+                          Icons.arrow_forward_ios, size: 24, weight: 80.0,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
@@ -316,6 +306,9 @@ class _SignUp_3State extends State<SignUp_3> {
             ],
           ),
         ),
+      ),
       );
   }
+  
+
 }

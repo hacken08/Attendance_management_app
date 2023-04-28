@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, sized_box_for_whitespace, non_constant_identifier_names, avoid_print
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, sized_box_for_whitespace, non_constant_identifier_names, avoid_print, duplicate_import
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -21,8 +21,14 @@ String zipCode = "";
 
 // final signUp_key_2 = GlobalKey<FormState>();
 
-class SignUp_2 extends StatelessWidget {
+class SignUp_2 extends StatefulWidget {
   const SignUp_2({super.key});
+
+  @override
+  State<SignUp_2> createState() => _SignUp_2State();
+}
+
+class _SignUp_2State extends State<SignUp_2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +63,7 @@ class SignUp_2 extends StatelessWidget {
                     ).pOnly(left: 1, bottom: 3), 
                  ),
                ),
+
                 Padding(
                   padding: const EdgeInsets.only(left: 150, top: 70),
                   child: Transform(
@@ -130,6 +137,7 @@ class SignUp_2 extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 60),
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       cursorRadius: const Radius.circular(20),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
@@ -350,7 +358,8 @@ class SignUp_2 extends StatelessWidget {
             
                  // labelText: "Zip Code",
                   child: TextFormField(
-            
+                        keyboardAppearance: Brightness.dark,
+                        keyboardType: TextInputType.number,
                         cursorRadius: const Radius.circular(20),
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(vertical: 5.0),

@@ -81,7 +81,7 @@ class First_page extends StatelessWidget {
                   ),
                ),
             ],
-          ).pOnly(top: 35, bottom: 20, left: 30),
+          ).pOnly(top: 35, bottom: 30, left: 35),
            
             InkWell(
               onTap: () { 

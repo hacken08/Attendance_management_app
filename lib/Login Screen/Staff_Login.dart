@@ -1,10 +1,11 @@
 
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace, camel_case_types, no_leading_underscores_for_local_identifiers, unused_field
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_project/HomePage.dart';
 import 'package:flutter_project/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vector_math/vector_math_64.dart';
@@ -13,12 +14,23 @@ import 'package:meta/dart2js.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+class Staff_Login  extends StatefulWidget {
+   Staff_Login ({super.key});
 
-String name = "";
-String mobileNum = "";
+  @override
+  State<Staff_Login> createState() => _Staff_LoginState();
+}
 
-class Student_Login  extends StatelessWidget {
-  const Student_Login ({super.key});
+class _Staff_LoginState extends State<Staff_Login> {
+
+  final signUp_key = GlobalKey <FormState> ();
+
+  String email = "";
+  String password = "";
+
+
+// ignore: non_constant_identifier_names
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +65,8 @@ class Student_Login  extends StatelessWidget {
                     ).pOnly(left: 1, bottom: 3), 
                  ),
                ),
+
+              
                 Transform(
                   transform: Matrix4.identity()..rotateZ(12.4),
                   child: Container(
@@ -68,7 +82,7 @@ class Student_Login  extends StatelessWidget {
                         begin: Alignment.centerLeft,
                         // end: Alignment.centerRight
                       ),
-                      borderRadius: BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           topRight: Radius.elliptical(220.0, 100.0),
                           topLeft: Radius.elliptical(250.3, 250.3),
                           bottomLeft: Radius.elliptical(530.50, 700.3)),
@@ -92,7 +106,7 @@ class Student_Login  extends StatelessWidget {
               child: Row(
                 children: const [
                   Text(
-                    "Student ",
+                    "Staff ",
                     style: TextStyle(
                       fontSize: 33,fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
@@ -108,22 +122,21 @@ class Student_Login  extends StatelessWidget {
                         color: Color.fromARGB(187, 0, 115, 255)),
                   ),
                 ],
-              ).pOnly(left: 100, bottom: 60),
+              ).pOnly(left: 118, bottom: 60),
             ),
 
             // Text Field: Name
             Form(
-              // key: signUp_key,
+              key: signUp_key,
               child: Stack(
                 children: [
                   TextFormField(
+                    
                     cursorRadius: const Radius.circular(20),
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                       fillColor: const Color.fromARGB(51, 175, 173, 173),
                       
-
-
                         focusedErrorBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                           style: BorderStyle.solid,
@@ -149,7 +162,7 @@ class Student_Login  extends StatelessWidget {
                       label: Row(
                         children: [
                           const Text(
-                            "UID",
+                            "Email",
                             style: TextStyle(fontFamily: 'abel',
                                 color: Color.fromARGB(255, 128, 128, 128),
                                 letterSpacing: 1.3,
@@ -160,7 +173,7 @@ class Student_Login  extends StatelessWidget {
                       ).pOnly(left: 20, bottom: 8),
 
                       prefixIcon: const GradientIcon(
-                        Icons.numbers,
+                        Icons.email,
                         size: 32,
                         gradient: LinearGradient(
                           colors: [
@@ -171,6 +184,7 @@ class Student_Login  extends StatelessWidget {
                         ),
                       ).pOnly(left: 15),
                     ),
+
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "This cannot be empy";
@@ -178,17 +192,16 @@ class Student_Login  extends StatelessWidget {
 
                       return null;
                     },
-                    onChanged: (value) {
-                      name = value;
-                    },
+                    onChanged: (value) => email = value,
                   ).pOnly(left: 20, right: 40),
 
                   // Text Field: Mobile Number
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 40, top: 105),
+
                     child: TextFormField(
+                      // controller: _passwordController,
                       obscureText: true,
-                      cursorRadius: const Radius.circular(20), 
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                         fillColor: const Color.fromARGB(51, 175, 173, 173),
@@ -198,6 +211,7 @@ class Student_Login  extends StatelessWidget {
                             style: BorderStyle.solid,
                             color: Color.fromARGB(255, 213, 11, 11)),
                             borderRadius: BorderRadius.all(Radius.circular(20.0))
+                          
                         ),
 
 
@@ -233,7 +247,7 @@ class Student_Login  extends StatelessWidget {
                           gradient: LinearGradient(
                             colors: [
                               Color.fromARGB(255, 157, 206, 244),
-                              Color.fromARGB(255, 0, 115, 255)
+                              Color.fromARGB(255, 0, 115, 255),
                             ],
                             begin: Alignment.bottomCenter,
                           ),
@@ -242,32 +256,26 @@ class Student_Login  extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "This cannot be empy";
-                        } else if (value.length > 10 ||
-                            value.length < 10 ||
-                            value.isLetter()) {
-                          return "Enter valid mobile number";
                         }
                         return null;
                       },
-                      onChanged: (num) {
-                        mobileNum = num;
-                      },
+                      onChanged: (value) => password = value,
                     ),
                   ).pOnly(
                     bottom: 5,
                   ),
                 ],
               ),
-            ).pOnly(bottom: 5),
+            ).pOnly(),
 
             
             TextButton( onPressed: () {},
-              child: const Text("Forget Password", ),
+              child:  const Text("Forget Password"),
             ).pOnly(bottom: 45, left: 200),
 
             Center(
               child: InkWell(
-                onTap: () {},
+                onTap: () => firebaseAuthentication(),
                 borderRadius: BorderRadius.circular(40),
                 splashColor: const Color.fromARGB(255, 84, 162, 251),
                 child: Ink(
@@ -279,6 +287,7 @@ class Student_Login  extends StatelessWidget {
                           BoxShadow(blurStyle: BlurStyle.normal),
                           BoxShadow(offset: Offset.zero)
                         ],
+                        
                         borderRadius: BorderRadius.circular(40),
                         gradient: const LinearGradient(
                           colors: [
@@ -310,4 +319,22 @@ class Student_Login  extends StatelessWidget {
       ),
     );
   }
+  firebaseAuthentication() {
+                  
+    if (signUp_key.currentState!.validate()) {
+        var _email = email;
+      var _password = password; 
+      FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      ).then((value) => Navigator.pushNamed(context, Raste.HomePage)
+      .catchError((error, stackTrace) {
+       error.toString(); 
+      })
+      );
+    }
+  }
 }
+
+
+

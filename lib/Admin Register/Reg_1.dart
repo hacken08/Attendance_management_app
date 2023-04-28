@@ -1,24 +1,21 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print
 
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace
-
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_project/main.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:vector_math/vector_math_64.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:meta/dart2js.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 
 String name = "";
 String mobileNum = "";
 
-class Staff_Login  extends StatelessWidget {
-  const Staff_Login ({super.key});
+class SignUp_1 extends StatefulWidget {
+  const SignUp_1({super.key});
+
+  @override
+  State<SignUp_1> createState() => _SignUp_1State();
+}
+
+class _SignUp_1State extends State<SignUp_1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,29 +50,30 @@ class Staff_Login  extends StatelessWidget {
                     ).pOnly(left: 1, bottom: 3), 
                  ),
                ),
-
-              
-                Transform(
-                  transform: Matrix4.identity()..rotateZ(12.4),
-                  child: Container(
-                    width: 140,
-                    height: 115,
-                    decoration: const BoxDecoration(
-                      boxShadow: [BoxShadow(blurRadius: 1.3)],
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 157, 206, 244),
-                          Color.fromARGB(255, 0, 115, 255),
-                        ],
-                        begin: Alignment.centerLeft,
-                        // end: Alignment.centerRight
-                      ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 150,bottom: 20, top: 70),
+                  child: Transform(
+                    transform: Matrix4.identity()..rotateZ(12.4),
+                    child: Container(
+                      width: 140,
+                      height: 115,
+                      decoration: const BoxDecoration(
+                        boxShadow: [BoxShadow(blurRadius: 1.3)],
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 157, 206, 244),
+                            Color.fromARGB(255, 0, 115, 255),
+                          ],
+                          begin: Alignment.centerLeft,
+                          // end: Alignment.centerRight
+                        ),
                         borderRadius: BorderRadius.only(
-                          topRight: Radius.elliptical(220.0, 100.0),
-                          topLeft: Radius.elliptical(250.3, 250.3),
-                          bottomLeft: Radius.elliptical(530.50, 700.3)),
+                            topRight: Radius.elliptical(220.0, 100.0),
+                            topLeft: Radius.elliptical(250.3, 250.3),
+                            bottomLeft: Radius.elliptical(530.50, 700.3)),
+                      ),
                     ),
-                  ).pOnly(left: 150, top: 45),
+                  ),
                 ),
               ],
             ),
@@ -84,17 +82,17 @@ class Staff_Login  extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(),
                 child: Image.asset(
-                  'assets/images/hello_bot.jpg',
-                  width: 200,
-                  height: 200,
+                  'assets/images/admin.png',
+                  width: 120,
+                  height: 120,
                 ),
               ).pOnly(),
-            ).pOnly(bottom: 20, left: 12),
+            ).pOnly(bottom: 65),
             Center(
               child: Row(
                 children: const [
                   Text(
-                    "Staff ",
+                    "Admin ",
                     style: TextStyle(
                       fontSize: 33,fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
@@ -102,7 +100,7 @@ class Staff_Login  extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Login",
+                    "Register",
                     style: TextStyle(
                         fontSize: 33,
                         fontFamily: 'abel',
@@ -110,7 +108,7 @@ class Staff_Login  extends StatelessWidget {
                         color: Color.fromARGB(187, 0, 115, 255)),
                   ),
                 ],
-              ).pOnly(left: 118, bottom: 60),
+              ).pOnly(left: 80, bottom: 60),
             ),
 
             // Text Field: Name
@@ -151,7 +149,7 @@ class Staff_Login  extends StatelessWidget {
                       label: Row(
                         children: [
                           const Text(
-                            "Email",
+                            "Name",
                             style: TextStyle(fontFamily: 'abel',
                                 color: Color.fromARGB(255, 128, 128, 128),
                                 letterSpacing: 1.3,
@@ -162,7 +160,7 @@ class Staff_Login  extends StatelessWidget {
                       ).pOnly(left: 20, bottom: 8),
 
                       prefixIcon: const GradientIcon(
-                        Icons.email,
+                        Icons.person,
                         size: 32,
                         gradient: LinearGradient(
                           colors: [
@@ -189,8 +187,7 @@ class Staff_Login  extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 40, top: 105),
                     child: TextFormField(
-                      // keyboardType: TextInputType.number,
-                      obscureText: true,
+                      keyboardType: TextInputType.number,
                       cursorRadius: const Radius.circular(20),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
@@ -221,7 +218,7 @@ class Staff_Login  extends StatelessWidget {
                         label: Row(
                           children: [
                             const Text(
-                              "Password",
+                              "Mobile Number",
                               style: TextStyle( fontFamily: 'abel',
                                   color: Color.fromARGB(255, 128, 128, 128),
                                   letterSpacing: 1.3,
@@ -232,7 +229,7 @@ class Staff_Login  extends StatelessWidget {
                         ).pOnly(left: 20, bottom: 8),
 
                         prefixIcon: const GradientIcon(
-                          Icons.lock,
+                          Icons.phone_iphone,
                           size: 32,
                           gradient: LinearGradient(
                             colors: [
@@ -262,53 +259,46 @@ class Staff_Login  extends StatelessWidget {
                   ),
                 ],
               ),
-            ).pOnly(),
+            ).pOnly(bottom: 65),
 
-            
-            TextButton( onPressed: () {},
-              child: const Text("Forget Password", ),
-            ).pOnly(bottom: 45, left: 200),
-
-            Center(
-              child: InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(40),
-                splashColor: const Color.fromARGB(255, 84, 162, 251),
-                child: Ink(
-                    width: 150,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        boxShadow: const [
-                          BoxShadow(blurRadius: 3.3),
-                          BoxShadow(blurStyle: BlurStyle.normal),
-                          BoxShadow(offset: Offset.zero)
-                        ],
-                        borderRadius: BorderRadius.circular(40),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 154, 210, 253),
-                            Color.fromARGB(255, 27, 129, 255)
-                          ],
-                          end: Alignment.topLeft,
-                          begin: Alignment.topRight,
-                        )),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "Login",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 255, 255, 255)),
-                        ).pOnly(right: 20, left: 20),
-                        const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                        ),
+            InkWell(
+              onTap: () => Navigator.pushNamed(context, Raste.signUp_2),
+              borderRadius: BorderRadius.circular(40),
+              splashColor: const Color.fromARGB(255, 84, 162, 251),
+              child: Ink(
+                  width: 150,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      boxShadow: const [
+                        BoxShadow(blurRadius: 3.3),
+                        BoxShadow(blurStyle: BlurStyle.normal),
+                        BoxShadow(offset: Offset.zero)
                       ],
-                    )),
-              ).pOnly(),
-            )
+                      borderRadius: BorderRadius.circular(40),
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 154, 210, 253),
+                          Color.fromARGB(255, 27, 129, 255)
+                        ],
+                        end: Alignment.topLeft,
+                        begin: Alignment.topRight,
+                      )),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Next",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                      ).pOnly(right: 20, left: 20),
+                      const Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ],
+                  )),
+            ).pOnly(left: 210)
           ],
         ),
       ),

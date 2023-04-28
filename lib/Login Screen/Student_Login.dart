@@ -1,3 +1,4 @@
+
 // ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace
 
 import 'dart:ui';
@@ -12,12 +13,19 @@ import 'package:meta/dart2js.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 String name = "";
 String mobileNum = "";
 
-class Institute_login extends StatelessWidget {
-  const Institute_login({super.key});
+class Student_Login  extends StatefulWidget {
+  const Student_Login ({super.key});
+
+  @override
+  State<Student_Login> createState() => _Student_LoginState();
+}
+
+class _Student_LoginState extends State<Student_Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +99,7 @@ class Institute_login extends StatelessWidget {
               child: Row(
                 children: const [
                   Text(
-                    "Institute ",
+                    "Student ",
                     style: TextStyle(
                       fontSize: 33,fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
@@ -148,7 +156,7 @@ class Institute_login extends StatelessWidget {
                       label: Row(
                         children: [
                           const Text(
-                            "Email",
+                            "UID",
                             style: TextStyle(fontFamily: 'abel',
                                 color: Color.fromARGB(255, 128, 128, 128),
                                 letterSpacing: 1.3,
@@ -159,7 +167,7 @@ class Institute_login extends StatelessWidget {
                       ).pOnly(left: 20, bottom: 8),
 
                       prefixIcon: const GradientIcon(
-                        Icons.email,
+                        Icons.numbers,
                         size: 32,
                         gradient: LinearGradient(
                           colors: [
@@ -187,7 +195,7 @@ class Institute_login extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, right: 40, top: 105),
                     child: TextFormField(
                       obscureText: true,
-                      cursorRadius: const Radius.circular(20),
+                      cursorRadius: const Radius.circular(20), 
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                         fillColor: const Color.fromARGB(51, 175, 173, 173),
@@ -197,7 +205,6 @@ class Institute_login extends StatelessWidget {
                             style: BorderStyle.solid,
                             color: Color.fromARGB(255, 213, 11, 11)),
                             borderRadius: BorderRadius.all(Radius.circular(20.0))
-                          
                         ),
 
 
@@ -213,6 +220,7 @@ class Institute_login extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(20.0))
                             ),
 
+                        // labelText: "MObile Number",
                         label: Row(
                           children: [
                             const Text(
@@ -257,8 +265,9 @@ class Institute_login extends StatelessWidget {
                   ),
                 ],
               ),
-            ).pOnly(),
+            ).pOnly(bottom: 5),
 
+            
             TextButton( onPressed: () {},
               child: const Text("Forget Password", ),
             ).pOnly(bottom: 45, left: 200),
@@ -301,7 +310,7 @@ class Institute_login extends StatelessWidget {
                         ),
                       ],
                     )),
-              ).pOnly(top: 10, left: 10),
+              ).pOnly(),
             )
           ],
         ),
