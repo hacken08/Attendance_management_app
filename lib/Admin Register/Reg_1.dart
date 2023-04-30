@@ -1,12 +1,12 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace, camel_case_types
 
 import 'package:flutter/material.dart';
 import 'package:flutter_project/main.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
-
-String name = "";
-String mobileNum = "";
+import 'package:flutter_project/Logic code/global_var.dart';
+import 'package:flutter_project/Logic code/Funcations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp_1 extends StatefulWidget {
   const SignUp_1({super.key});
@@ -16,6 +16,8 @@ class SignUp_1 extends StatefulWidget {
 }
 
 class _SignUp_1State extends State<SignUp_1> {
+  final _roleList = ["Admin", "Institute", "Staff", "Teacher"];
+  final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +30,15 @@ class _SignUp_1State extends State<SignUp_1> {
             Row(
               children: [
                 InkWell(
-                onTap: () { Navigator.pushNamed(context, Raste.firstPage); },
-                 child: Container(
+                  onTap: () {
+                    Navigator.pushNamed(context, Raste.firstPage);
+                  },
+                  child: Container(
                     width: 120,
                     height: 60,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        
                         const Icon(
                           Icons.arrow_back_ios,
                           color: Color.fromARGB(255, 0, 115, 255),
@@ -45,13 +48,14 @@ class _SignUp_1State extends State<SignUp_1> {
                           style: TextStyle(
                               fontSize: 20,
                               color: Color.fromARGB(255, 0, 115, 255)),
-                        ).pOnly( left: 5),
+                        ).pOnly(left: 5),
                       ],
-                    ).pOnly(left: 1, bottom: 3), 
-                 ),
-               ),
+                    ).pOnly(left: 1, bottom: 3),
+                  ),
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 150,bottom: 20, top: 70),
+                  padding:
+                      const EdgeInsets.only(left: 150, bottom: 20, top: 70),
                   child: Transform(
                     transform: Matrix4.identity()..rotateZ(12.4),
                     child: Container(
@@ -94,7 +98,8 @@ class _SignUp_1State extends State<SignUp_1> {
                   Text(
                     "Admin ",
                     style: TextStyle(
-                      fontSize: 33,fontFamily: 'abel',
+                      fontSize: 33,
+                      fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
                       color: Color.fromARGB(255, 0, 0, 0),
                     ),
@@ -116,110 +121,46 @@ class _SignUp_1State extends State<SignUp_1> {
               // key: signUp_key,
               child: Stack(
                 children: [
-                  TextFormField(
-                    cursorRadius: const Radius.circular(20),
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
-                      fillColor: const Color.fromARGB(51, 175, 173, 173),
-                      
-
-
-                        focusedErrorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                          style: BorderStyle.solid,
-                          color: Color.fromARGB(255, 213, 11, 11)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                        
-                      ),
-
-
-                      border: const UnderlineInputBorder( 
-                              borderSide: BorderSide(  
-                              style: BorderStyle.solid,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0))
-                             ),
-
-                          focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                          ),
-
-                      // labelText: "Name",
-                      label: Row(
-                        children: [
-                          const Text(
-                            "Name",
-                            style: TextStyle(fontFamily: 'abel',
-                                color: Color.fromARGB(255, 128, 128, 128),
-                                letterSpacing: 1.3,
-                                height: 1.8,
-                                fontSize: 15),
-                          )
-                        ],
-                      ).pOnly(left: 20, bottom: 8),
-
-                      prefixIcon: const GradientIcon(
-                        Icons.person,
-                        size: 32,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 157, 206, 244),
-                            Color.fromARGB(255, 0, 115, 255)
-                          ],
-                          begin: Alignment.bottomCenter,
-                        ),
-                      ).pOnly(left: 15),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "This cannot be empy";
-                      }
-
-                      return null;
-                    },
-                    onChanged: (value) {
-                      name = value;
-                    },
-                  ).pOnly(left: 20, right: 40),
-
                   // Text Field: Mobile Number
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 40, top: 105),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 40, top: 105),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       cursorRadius: const Radius.circular(20),
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 5.0),
                         fillColor: const Color.fromARGB(51, 175, 173, 173),
 
                         focusedErrorBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            style: BorderStyle.solid,
-                            color: Color.fromARGB(255, 213, 11, 11)),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0))
-                          
-                        ),
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 213, 11, 11)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
 
+                        border: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
 
-                        border: const UnderlineInputBorder( 
-                          borderSide: BorderSide(  
-                              style: BorderStyle.solid,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0))
-                              ),
-
-                            focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0))
-                            ),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(2255, 0, 115, 255)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
 
                         // labelText: "MObile Number",
                         label: Row(
                           children: [
                             const Text(
                               "Mobile Number",
-                              style: TextStyle( fontFamily: 'abel',
+                              style: TextStyle(
+                                  fontFamily: 'abel',
                                   color: Color.fromARGB(255, 128, 128, 128),
                                   letterSpacing: 1.3,
                                   height: 1.8,
@@ -257,12 +198,639 @@ class _SignUp_1State extends State<SignUp_1> {
                   ).pOnly(
                     bottom: 5,
                   ),
+
+                  TextFormField(
+                    cursorRadius: const Radius.circular(20),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                      fillColor: const Color.fromARGB(51, 175, 173, 173),
+
+                      focusedErrorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 213, 11, 11)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      border: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(2255, 0, 115, 255)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      // labelText: "Name",
+                      label: Row(
+                        children: [
+                          const Text(
+                            "Name",
+                            style: TextStyle(
+                                fontFamily: 'abel',
+                                color: Color.fromARGB(255, 128, 128, 128),
+                                letterSpacing: 1.3,
+                                height: 1.8,
+                                fontSize: 15),
+                          )
+                        ],
+                      ).pOnly(left: 20, bottom: 8),
+
+                      prefixIcon: const GradientIcon(
+                        Icons.person,
+                        size: 32,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 157, 206, 244),
+                            Color.fromARGB(255, 0, 115, 255)
+                          ],
+                          begin: Alignment.bottomCenter,
+                        ),
+                      ).pOnly(left: 15),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "This cannot be empy";
+                      }
+
+                      return null;
+                    },
+                    onChanged: (value) {
+                      name = value;
+                    },
+                  ).pOnly(left: 20, right: 40),
                 ],
               ),
             ).pOnly(bottom: 65),
 
+            Form(
+              // key: signUp_key,
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 40),
+                    child: TextFormField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      cursorRadius: const Radius.circular(20),
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 5.0),
+                        fillColor: const Color.fromARGB(51, 224, 220, 220),
+                        // filled: true,
+
+                        focusedErrorBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 213, 11, 11)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+
+                        border: const UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(2255, 0, 115, 255)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+
+                        // labelText: "Email",
+                        label: Row(
+                          children: [
+                            const Text(
+                              "Email ID",
+                              style: TextStyle(
+                                  fontFamily: 'abel',
+                                  color: Color.fromARGB(255, 128, 128, 128),
+                                  // letterSpacing: 1.3,
+                                  // height: 1.8,
+                                  fontSize: 15),
+                            )
+                          ],
+                        ).pOnly(left: 20, bottom: 8),
+
+                        prefixIcon: const GradientIcon(
+                          Icons.email_rounded,
+                          size: 32,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(255, 157, 206, 244),
+                              Color.fromARGB(255, 0, 115, 255)
+                            ],
+                            begin: Alignment.bottomCenter,
+                          ),
+                        ).pOnly(left: 15),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This cannot be empy";
+                        }
+
+                        return null;
+                      },
+                    ),
+                  ),
+
+                  // Text Field: Addressr
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 40, top: 100),
+                    child: TextFormField(
+                      // keyboardType: TextInputType.number,
+                      cursorRadius: const Radius.circular(20),
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 5.0),
+                        fillColor: const Color.fromARGB(51, 224, 220, 220),
+                        // filled: true,
+
+                        focusedErrorBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 213, 11, 11)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+
+                        border: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(2255, 0, 115, 255)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+
+                        // labelText: "MObile Number",
+                        label: Row(
+                          children: [
+                            const Text(
+                              "Address",
+                              style: TextStyle(
+                                  fontFamily: 'abel',
+                                  color: Color.fromARGB(255, 128, 128, 128),
+                                  letterSpacing: 1.3,
+                                  // height: .8,
+                                  fontSize: 15),
+                            )
+                          ],
+                        ).pOnly(left: 20),
+
+                        prefixIcon: const GradientIcon(
+                          Icons.location_on,
+                          size: 32,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(255, 157, 206, 244),
+                              Color.fromARGB(255, 0, 115, 255)
+                            ],
+                            begin: Alignment.bottomCenter,
+                          ),
+                        ).pOnly(left: 15),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This cannot be empy";
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        address = value;
+                      },
+                    ),
+                  ).pOnly(
+                    bottom: 6,
+                  ),
+                ],
+              ),
+            ),
+
+            //
+            Form(
+              // key: signUp_key2,
+              child: Row(children: [
+                Container(
+                  width: 200.2,
+                  child: TextFormField(
+                    cursorRadius: const Radius.circular(20),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                      fillColor: const Color.fromARGB(51, 224, 220, 220),
+                      // filled: true,
+
+                      focusedErrorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 213, 11, 11)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      border: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(2255, 0, 115, 255)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      // labelText: "MObile Number",
+                      label: Row(
+                        children: [
+                          const Text(
+                            "City",
+                            style: TextStyle(
+                                fontFamily: 'abel',
+                                color: Color.fromARGB(255, 128, 128, 128),
+                                letterSpacing: 1.3,
+                                // height: .8,
+                                fontSize: 15),
+                          )
+                        ],
+                      ).pOnly(left: 15),
+
+                      prefixIcon: const GradientIcon(
+                        Icons.house_sharp,
+                        size: 32,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 157, 206, 244),
+                            Color.fromARGB(255, 0, 115, 255)
+                          ],
+                          begin: Alignment.bottomCenter,
+                        ),
+                      ).pOnly(left: 5),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "This cannot be empy";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      city = value;
+                    },
+                  ).pOnly(left: 25),
+                ).pOnly(right: 20),
+                Container(
+                  width: 150.2,
+                  // labelText: "Zip Code",
+                  child: TextFormField(
+                    keyboardAppearance: Brightness.dark,
+                    keyboardType: TextInputType.number,
+                    cursorRadius: const Radius.circular(20),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                      fillColor: const Color.fromARGB(51, 224, 220, 220),
+                      // filled: true,
+
+                      errorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 213, 11, 11)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      border: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(2255, 0, 115, 255)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+
+                      label: Row(
+                        children: [
+                          const Text(
+                            "Zip Code",
+                            style: TextStyle(
+                                fontFamily: 'abel',
+                                color: Color.fromARGB(255, 128, 128, 128),
+                                letterSpacing: 1.3,
+                                // height: .8,
+                                fontSize: 15),
+                          )
+                        ],
+                      ).pOnly(left: 10),
+
+                      prefixIcon: const GradientIcon(
+                        Icons.email,
+                        size: 32,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 157, 206, 244),
+                            Color.fromARGB(255, 0, 115, 255)
+                          ],
+                          begin: Alignment.bottomCenter,
+                        ),
+                      ).pOnly(left: 5),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "This cannot be empy";
+                      }
+
+                      if (value.length > 6) {
+                        return "Zip code must have 6 digit";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      zipCode = value;
+                    },
+                  ),
+                ),
+              ]).pOnly(top: 40, bottom: 55),
+            ),
+
+            Container(
+              width: 310,
+              child: DropdownButtonFormField<String>(
+                  elevation: 15,
+                  isDense: true,
+                  isExpanded: true,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                    fillColor: const Color.fromARGB(51, 255, 255, 255),
+                    // filled: false,
+
+                    focusedErrorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: Color.fromARGB(255, 213, 11, 11)),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                    border: const OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: Color.fromARGB(2255, 0, 115, 255)),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                    // labelText: "Role",
+                    label: Row(
+                      children: const [
+                        Text(
+                          "Role",
+                          style: TextStyle(
+                              fontFamily: 'abel',
+                              color: Color.fromARGB(255, 128, 128, 128),
+                              // letterSpacing: 1.3,
+                              // height: 1.8,
+                              fontSize: 16),
+                        )
+                      ],
+                    ).pOnly(),
+
+                    prefixIcon: const GradientIcon(
+                      Icons.person_add,
+                      size: 32,
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 157, 206, 244),
+                          Color.fromARGB(255, 0, 115, 255)
+                        ],
+                        begin: Alignment.bottomCenter,
+                      ),
+                    ).pOnly(left: 15, right: 20),
+                  ),
+                  iconSize: 45,
+                  icon: const GradientIcon(
+                    Icons.arrow_drop_down,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 157, 206, 244),
+                        Color.fromARGB(255, 0, 115, 255)
+                      ],
+                      begin: Alignment.bottomCenter,
+                    ),
+                  ).pOnly(right: 13),
+                  items: _roleList
+                      .map((role) => DropdownMenuItem(
+                            value: role,
+                            child: Row(
+                              children: [
+                                // const Icon(
+                                //   Icons.circle,
+                                //   size: 13,
+                                //   color: Color.fromARGB(255, 129, 37, 152),
+                                // ).pOnly(left: 15, right: 15),
+                                Text(role)
+                              ],
+                            ),
+                          ))
+                      .toList(),
+                  onChanged: (genderList) {
+                    setState(() {
+                      selectRole = genderList as String;
+                    });
+                  }),
+            ).pOnly(right: 40, bottom: 30),
+
+            Row(
+              children: [
+                Radio(
+                  value: 0,
+                  groupValue: radio,
+                  onChanged: (check) {
+                    setState(() {
+                      if (check == 0) {
+                        radio = check as int;
+                        gender = "Male";
+                      }
+                    });
+                  },
+                ).pOnly(right: 15),
+                "Male".text.fontFamily('abel').size(15).make()
+              ],
+            ).pOnly(left: 40),
+
+            Row(
+              children: [
+                Radio(
+                  value: 2,
+                  groupValue: radio,
+                  // visualDensity: VisualDensity(horizontal: 10.0, vertical: 10.0),
+                  onChanged: (check) {
+                    setState(() {
+                      if (check == 2) {
+                        radio = check as int;
+                        gender = "Female";
+                      }
+                    });
+                  },
+                ).pOnly(right: 15),
+                "Female".text.fontFamily('abel').size(15).make()
+              ],
+            ).pOnly(left: 40, bottom: 40),
+
+            TextFormField(
+              // onChanged: (value) => passowrd = value,
+              obscureText: true,
+
+              onChanged: (value) => passowrd = value,
+              cursorRadius: const Radius.circular(20),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                fillColor: const Color.fromARGB(51, 224, 220, 220),
+                // filled: true,
+
+                focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        style: BorderStyle.solid,
+                        color: Color.fromARGB(255, 235, 1, 1)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                border: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        style: BorderStyle.solid,
+                        color: Color.fromARGB(2255, 0, 115, 255)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                // labelText: "Email",
+                label: Row(
+                  children: const [
+                    Text(
+                      "Type Password",
+                      style: TextStyle(
+                          fontFamily: 'abel',
+                          color: Color.fromARGB(255, 128, 128, 128),
+                          // letterSpacing: 1.3,
+                          // height: 1.8,
+                          fontSize: 15),
+                    )
+                  ],
+                ).pOnly(left: 20),
+
+                prefixIcon: const GradientIcon(
+                  Icons.lock_open,
+                  size: 32,
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 157, 206, 244),
+                      Color.fromARGB(255, 0, 115, 255)
+                    ],
+                    begin: Alignment.bottomCenter,
+                  ),
+                ).pOnly(left: 15),
+              ),
+            ).pOnly(left: 30, right: 40),
+
+            TextFormField(
+              obscureText: true,
+              cursorRadius: const Radius.circular(20),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                fillColor: const Color.fromARGB(51, 224, 220, 220),
+                // filled: true,
+
+                focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        style: BorderStyle.solid,
+                        color: Color.fromARGB(255, 235, 1, 1)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                border: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        style: BorderStyle.solid,
+                        color: Color.fromARGB(2255, 0, 115, 255)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                // labelText: "Password",
+                label: Row(
+                  children: const [
+                    Text(
+                      "Confirm Password ",
+                      style: TextStyle(
+                          fontFamily: 'abel',
+                          color: Color.fromARGB(255, 128, 128, 128),
+                          // letterSpacing: 1.3,
+                          // height: 1.8,
+                          fontSize: 15),
+                    )
+                  ],
+                ).pOnly(left: 20),
+
+                prefixIcon: const GradientIcon(
+                  Icons.lock_outline,
+                  size: 32,
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 157, 206, 244),
+                      Color.fromARGB(255, 0, 115, 255)
+                    ],
+                    begin: Alignment.bottomCenter,
+                  ),
+                ).pOnly(left: 15),
+              ),
+              onChanged: (value) => confirmPassword = value,
+            ).pOnly(left: 30, bottom: 60, right: 40, top: 60),
+
             InkWell(
-              onTap: () => Navigator.pushNamed(context, Raste.signUp_2),
+              onTap: () async {
+                String _email = _emailController.text;
+                emailId = _emailController.text;
+                var _password = passowrd;
+
+                try {
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: _email,
+                    password: _password,
+                  );
+                  Navigator.pushNamed(context, Raste.HomePage);
+                } on Exception catch (error) {
+                  print(error);
+                } catch (error) {
+                  // executed for errors of all types other than Exception
+                }
+                Defined_Funation().submitData();
+                print(name);
+                print(mobileNum);
+                print(emailId);
+                print(address);
+                print(city);
+                print(zipCode);
+                print(selectRole);
+                print(gender);
+                print(passowrd);
+              },
               borderRadius: BorderRadius.circular(40),
               splashColor: const Color.fromARGB(255, 84, 162, 251),
               child: Ink(
@@ -298,7 +866,7 @@ class _SignUp_1State extends State<SignUp_1> {
                       ),
                     ],
                   )),
-            ).pOnly(left: 210)
+            ).pOnly(left: 210, bottom: 60)
           ],
         ),
       ),

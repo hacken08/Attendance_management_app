@@ -1,31 +1,28 @@
 
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace, camel_case_types, no_leading_underscores_for_local_identifiers, unused_field
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_project/Logic%20code/Funcations.dart';
 import 'package:flutter_project/main.dart';
+import 'package:flutter_project/Logic code/global_var.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter/material.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
+import 'package:flutter_project/Logic code/Funcations.dart';
 
 
-class Student_Login  extends StatefulWidget {
-   Student_Login ({super.key});
-   
+class Admin_login  extends StatelessWidget {
+   Admin_login ({super.key});
 
-  @override
-  State<Student_Login> createState() => _Student_LoginState();
-}
+  final signUp_key = GlobalKey <FormState> ();
 
-class _Student_LoginState extends State<Student_Login> {
+  String email = "";
 
-final signUp_key = GlobalKey <FormState> ();
-String UID = "";
-String password= "";
+  String password = "";
+
+// ignore: non_constant_identifier_names
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +57,8 @@ String password= "";
                     ).pOnly(left: 1, bottom: 3), 
                  ),
                ),
+
+              
                 Transform(
                   transform: Matrix4.identity()..rotateZ(12.4),
                   child: Container(
@@ -75,7 +74,7 @@ String password= "";
                         begin: Alignment.centerLeft,
                         // end: Alignment.centerRight
                       ),
-                      borderRadius: BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           topRight: Radius.elliptical(220.0, 100.0),
                           topLeft: Radius.elliptical(250.3, 250.3),
                           bottomLeft: Radius.elliptical(530.50, 700.3)),
@@ -99,7 +98,7 @@ String password= "";
               child: Row(
                 children: const [
                   Text(
-                    "Student ",
+                    "Admin ",
                     style: TextStyle(
                       fontSize: 33,fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
@@ -115,12 +114,12 @@ String password= "";
                         color: Color.fromARGB(187, 0, 115, 255)),
                   ),
                 ],
-              ).pOnly(left: 100, bottom: 60),
+              ).pOnly(left: 118, bottom: 60),
             ),
 
             // Text Field: Name
             Form(
-              key: signUp_key,
+              // key: signUp_key,
               child: Stack(
                 children: [
                   TextFormField(
@@ -128,36 +127,35 @@ String password= "";
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                       fillColor: const Color.fromARGB(51, 175, 173, 173),
-                      
 
+                      focusedErrorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 213, 11, 11)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
 
-                        focusedErrorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                          style: BorderStyle.solid,
-                          color: Color.fromARGB(255, 213, 11, 11)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                        
-                      ),
-
-
-                      border: const UnderlineInputBorder( 
-                              borderSide: BorderSide(  
+                      border: const UnderlineInputBorder(
+                          borderSide: BorderSide(
                               style: BorderStyle.solid,
                               color: Color.fromARGB(255, 0, 0, 0)),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0))
-                             ),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
 
-                          focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                          ),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(2255, 0, 115, 255)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
 
                       // labelText: "Name",
                       label: Row(
                         children: [
                           const Text(
-                            "UID",
-                            style: TextStyle(fontFamily: 'abel',
+                            "Email",
+                            style: TextStyle(
+                                fontFamily: 'abel',
                                 color: Color.fromARGB(255, 128, 128, 128),
                                 letterSpacing: 1.3,
                                 height: 1.8,
@@ -167,7 +165,7 @@ String password= "";
                       ).pOnly(left: 20, bottom: 8),
 
                       prefixIcon: const GradientIcon(
-                        Icons.numbers,
+                        Icons.email,
                         size: 32,
                         gradient: LinearGradient(
                           colors: [
@@ -186,46 +184,45 @@ String password= "";
                       return null;
                     },
                     onChanged: (value) {
-                      UID = value;
+                      email = value;
                     },
                   ).pOnly(left: 20, right: 40),
 
                   // Text Field: Mobile Number
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 40, top: 105),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 40, top: 105),
                     child: TextFormField(
                       obscureText: true,
-                      cursorRadius: const Radius.circular(20), 
+                      cursorRadius: const Radius.circular(20),
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 5.0),
                         fillColor: const Color.fromARGB(51, 175, 173, 173),
-
                         focusedErrorBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            style: BorderStyle.solid,
-                            color: Color.fromARGB(255, 213, 11, 11)),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0))
-                        ),
-
-
-                        border: const UnderlineInputBorder( 
-                          borderSide: BorderSide(  
-                              style: BorderStyle.solid,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0))
-                              ),
-
-                            focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0))
-                            ),
-
-                        // labelText: "MObile Number",
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 213, 11, 11)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        border: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(2255, 0, 115, 255)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
                         label: Row(
                           children: [
                             const Text(
                               "Password",
-                              style: TextStyle( fontFamily: 'abel',
+                              style: TextStyle(
+                                  fontFamily: 'abel',
                                   color: Color.fromARGB(255, 128, 128, 128),
                                   letterSpacing: 1.3,
                                   height: 1.8,
@@ -233,7 +230,6 @@ String password= "";
                             )
                           ],
                         ).pOnly(left: 20, bottom: 8),
-
                         prefixIcon: const GradientIcon(
                           Icons.lock,
                           size: 32,
@@ -248,11 +244,16 @@ String password= "";
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "password cannot be empy";
-                        } 
+                          return "This cannot be empy";
+                        } else if (value.length > 10 ||
+                            value.length < 10 ||
+                            value.isLetter()) {
+                          return "Enter valid mobile number";
+                        }
+                        return null;
                       },
                       onChanged: (num) {
-                        password = num;
+                        passowrd = num;
                       },
                     ),
                   ).pOnly(
@@ -260,16 +261,27 @@ String password= "";
                   ),
                 ],
               ),
-            ).pOnly(bottom: 5),
+            ).pOnly(),
 
             
             TextButton( onPressed: () {},
-              child: const Text("Forget Password", ),
+              child:  const Text("Forget Password"),
             ).pOnly(bottom: 45, left: 200),
 
             Center(
               child: InkWell(
-                onTap: () => const Defined_Funation().firebaseAuthentication(UID, password, context),
+                onLongPress: () => Navigator.pushNamed(context, Raste.signUp_1),
+                onTap: () {
+                if (selectRole == "Admin") {
+                  Navigator.pushNamed(context, Raste.HomePage);
+                }
+
+                else {
+                  print("This email doesn't belong to admin");
+                  return;
+                }
+              
+                },
                 borderRadius: BorderRadius.circular(40),
                 splashColor: const Color.fromARGB(255, 84, 162, 251),
                 child: Ink(
@@ -281,6 +293,7 @@ String password= "";
                           BoxShadow(blurStyle: BlurStyle.normal),
                           BoxShadow(offset: Offset.zero)
                         ],
+                        
                         borderRadius: BorderRadius.circular(40),
                         gradient: const LinearGradient(
                           colors: [
@@ -312,6 +325,4 @@ String password= "";
       ),
     );
   }
-  
-  }
-
+}

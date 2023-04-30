@@ -1,0 +1,17 @@
+changes :-
+1. minimum pages 
+2. admin login needed
+3. role based login 
+4. remove paddings
+5. flutter web changes
+6. add validation
+
+7.Drawer options:-
+=> drawer for admin :-
+   * register admin
+   * see all admins
+   * register institite
+   * see all institute
+   * seel all devices
+
+8. add forget password

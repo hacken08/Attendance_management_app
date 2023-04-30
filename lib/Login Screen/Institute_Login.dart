@@ -1,21 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_project/main.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:vector_math/vector_math_64.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:meta/dart2js.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
-
-String name = "";
-String mobileNum = "";
-
+import 'package:flutter_project/Logic code/Funcations.dart';
 class Institute_login extends StatefulWidget {
   const Institute_login({super.key});
 
@@ -24,6 +13,9 @@ class Institute_login extends StatefulWidget {
 }
 
 class _Institute_loginState extends State<Institute_login> {
+  String email = "";
+  String passowrd = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,16 +26,18 @@ class _Institute_loginState extends State<Institute_login> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                onTap: () { Navigator.pushNamed(context, Raste.firstPage); },
-                 child: Container(
+                  onTap: () {
+                    Navigator.pushNamed(context, Raste.firstPage);
+                  },
+                  child: Container(
                     width: 120,
                     height: 60,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        
                         const Icon(
                           Icons.arrow_back_ios,
                           color: Color.fromARGB(255, 0, 115, 255),
@@ -53,11 +47,11 @@ class _Institute_loginState extends State<Institute_login> {
                           style: TextStyle(
                               fontSize: 20,
                               color: Color.fromARGB(255, 0, 115, 255)),
-                        ).pOnly( left: 5),
+                        ).pOnly(left: 5),
                       ],
-                    ).pOnly(left: 1, bottom: 3), 
-                 ),
-               ),
+                    ).pOnly(left: 1, bottom: 3),
+                  ),
+                ),
                 Transform(
                   transform: Matrix4.identity()..rotateZ(12.4),
                   child: Container(
@@ -99,7 +93,8 @@ class _Institute_loginState extends State<Institute_login> {
                   Text(
                     "Institute ",
                     style: TextStyle(
-                      fontSize: 33,fontFamily: 'abel',
+                      fontSize: 33,
+                      fontFamily: 'abel',
                       fontWeight: FontWeight.w900,
                       color: Color.fromARGB(255, 0, 0, 0),
                     ),
@@ -126,36 +121,35 @@ class _Institute_loginState extends State<Institute_login> {
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                       fillColor: const Color.fromARGB(51, 175, 173, 173),
-                      
 
+                      focusedErrorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(255, 213, 11, 11)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
 
-                        focusedErrorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                          style: BorderStyle.solid,
-                          color: Color.fromARGB(255, 213, 11, 11)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                        
-                      ),
-
-
-                      border: const UnderlineInputBorder( 
-                              borderSide: BorderSide(  
+                      border: const UnderlineInputBorder(
+                          borderSide: BorderSide(
                               style: BorderStyle.solid,
                               color: Color.fromARGB(255, 0, 0, 0)),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0))
-                             ),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
 
-                          focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                          ),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                              style: BorderStyle.solid,
+                              color: Color.fromARGB(2255, 0, 115, 255)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
 
                       // labelText: "Name",
                       label: Row(
                         children: [
                           const Text(
                             "Email",
-                            style: TextStyle(fontFamily: 'abel',
+                            style: TextStyle(
+                                fontFamily: 'abel',
                                 color: Color.fromARGB(255, 128, 128, 128),
                                 letterSpacing: 1.3,
                                 height: 1.8,
@@ -184,46 +178,45 @@ class _Institute_loginState extends State<Institute_login> {
                       return null;
                     },
                     onChanged: (value) {
-                      name = value;
+                      email = value;
                     },
                   ).pOnly(left: 20, right: 40),
 
                   // Text Field: Mobile Number
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 40, top: 105),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 40, top: 105),
                     child: TextFormField(
                       obscureText: true,
                       cursorRadius: const Radius.circular(20),
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 5.0),
                         fillColor: const Color.fromARGB(51, 175, 173, 173),
-
                         focusedErrorBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            style: BorderStyle.solid,
-                            color: Color.fromARGB(255, 213, 11, 11)),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0))
-                          
-                        ),
-
-
-                        border: const UnderlineInputBorder( 
-                          borderSide: BorderSide(  
-                              style: BorderStyle.solid,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0))
-                              ),
-
-                            focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(style: BorderStyle.solid ,color: Color.fromARGB(2255, 0, 115, 255)),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0))
-                            ),
-
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 213, 11, 11)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        border: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromARGB(2255, 0, 115, 255)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
                         label: Row(
                           children: [
                             const Text(
                               "Password",
-                              style: TextStyle( fontFamily: 'abel',
+                              style: TextStyle(
+                                  fontFamily: 'abel',
                                   color: Color.fromARGB(255, 128, 128, 128),
                                   letterSpacing: 1.3,
                                   height: 1.8,
@@ -231,7 +224,6 @@ class _Institute_loginState extends State<Institute_login> {
                             )
                           ],
                         ).pOnly(left: 20, bottom: 8),
-
                         prefixIcon: const GradientIcon(
                           Icons.lock,
                           size: 32,
@@ -255,7 +247,7 @@ class _Institute_loginState extends State<Institute_login> {
                         return null;
                       },
                       onChanged: (num) {
-                        mobileNum = num;
+                        passowrd = num;
                       },
                     ),
                   ).pOnly(
@@ -265,13 +257,16 @@ class _Institute_loginState extends State<Institute_login> {
               ),
             ).pOnly(),
 
-            TextButton( onPressed: () {},
-              child: const Text("Forget Password", ),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                "Forget Password",
+              ),
             ).pOnly(bottom: 45, left: 200),
 
             Center(
               child: InkWell(
-                onTap: () {},
+                onTap: ()  => Defined_Funation().firebaseAuthentication(email, passowrd , context),
                 borderRadius: BorderRadius.circular(40),
                 splashColor: const Color.fromARGB(255, 84, 162, 251),
                 child: Ink(

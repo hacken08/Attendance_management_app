@@ -5,16 +5,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_project/HomePage.dart';
 import 'package:flutter_project/main.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:meta/dart2js.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_project/Logic code/Funcations.dart';
 class Staff_Login  extends StatefulWidget {
    Staff_Login ({super.key});
 
@@ -40,7 +35,7 @@ class _Staff_LoginState extends State<Staff_Login> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
                 onTap: () { Navigator.pushNamed(context, Raste.firstPage); },
@@ -275,7 +270,7 @@ class _Staff_LoginState extends State<Staff_Login> {
 
             Center(
               child: InkWell(
-                onTap: () => firebaseAuthentication(),
+                onTap: () => const Defined_Funation().firebaseAuthentication(email, password, context),
                 borderRadius: BorderRadius.circular(40),
                 splashColor: const Color.fromARGB(255, 84, 162, 251),
                 child: Ink(
@@ -319,22 +314,4 @@ class _Staff_LoginState extends State<Staff_Login> {
       ),
     );
   }
-  firebaseAuthentication() {
-                  
-    if (signUp_key.currentState!.validate()) {
-        var _email = email;
-      var _password = password; 
-      FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      ).then((value) => Navigator.pushNamed(context, Raste.HomePage)
-      .catchError((error, stackTrace) {
-       error.toString(); 
-      })
-      );
-    }
-  }
 }
-
-
-

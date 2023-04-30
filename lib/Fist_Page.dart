@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_project/main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'Logic code/global_var.dart';
 
 
 class First_page extends StatelessWidget {
-  const First_page ({super.key});
+First_page ({super.key});
+
+final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,6 @@ class First_page extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-          
-
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(),
@@ -43,6 +44,7 @@ class First_page extends StatelessWidget {
                       color: Color.fromARGB(255, 0, 0, 0),
                     ),
                   ),
+                  
                   Text(
                     "Name",
                     style: TextStyle(
@@ -85,7 +87,7 @@ class First_page extends StatelessWidget {
            
             InkWell(
               onTap: () { 
-                Navigator.pushNamed(context, Raste.signUp_1);
+                Navigator.pushNamed(context, Raste.admin_login);
               },
               borderRadius: BorderRadius.circular(40),
               splashColor: const Color.fromARGB(255, 84, 162, 251),
@@ -214,7 +216,8 @@ class First_page extends StatelessWidget {
                   ),
             ).pOnly(bottom: 15),
              InkWell(
-              onTap: () => Navigator.pushNamed(context, Raste.student_login),
+              onTap: () => 
+                   Navigator.pushNamed(context, Raste.student_login),
               borderRadius: BorderRadius.circular(40),
               splashColor: const Color.fromARGB(255, 84, 162, 251),
               child: Ink(
@@ -255,8 +258,6 @@ class First_page extends StatelessWidget {
                   ).pOnly(right: 50)
                   ),
             ).pOnly(bottom: 15),
-
-            
           ],
         ).pOnly(bottom: 30),
       ),
