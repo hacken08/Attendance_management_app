@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace, camel_case_types
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_local_variable, avoid_types_as_parameter_names, avoid_print, sized_box_for_whitespace, camel_case_types, use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/main.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -7,6 +8,7 @@ import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:flutter_project/Logic code/global_var.dart';
 import 'package:flutter_project/Logic code/Funcations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 class SignUp_1 extends StatefulWidget {
   const SignUp_1({super.key});
@@ -804,33 +806,7 @@ class _SignUp_1State extends State<SignUp_1> {
             ).pOnly(left: 30, bottom: 60, right: 40, top: 60),
 
             InkWell(
-              onTap: () async {
-                String _email = _emailController.text;
-                emailId = _emailController.text;
-                var _password = passowrd;
-
-                try {
-                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                    email: _email,
-                    password: _password,
-                  );
-                  Navigator.pushNamed(context, Raste.HomePage);
-                } on Exception catch (error) {
-                  print(error);
-                } catch (error) {
-                  // executed for errors of all types other than Exception
-                }
-                Defined_Funation().submitData();
-                print(name);
-                print(mobileNum);
-                print(emailId);
-                print(address);
-                print(city);
-                print(zipCode);
-                print(selectRole);
-                print(gender);
-                print(passowrd);
-              },
+              onTap: () => registering(_emailController.text, passowrd, context),
               borderRadius: BorderRadius.circular(40),
               splashColor: const Color.fromARGB(255, 84, 162, 251),
               child: Ink(
@@ -871,5 +847,38 @@ class _SignUp_1State extends State<SignUp_1> {
         ),
       ),
     );
+  }
+
+  registering(var regEmail, var regPassword, context) async {
+
+    emailId = _emailController.text;
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: regEmail,
+        password: regPassword,
+      );
+      Navigator.pushNamed(context, Raste.HomePage);
+    } on Exception catch (error) {
+      print(error);
+    } catch (error) {
+      // executed for errors of all types other than Exception
+    }
+    
+    submitData();
+  }
+  
+  submitData() {
+   final CollectionReference Users = FirebaseFirestore.instance.collection('user');
+
+    Users.add({
+      'name': name,
+      'phone number': mobileNum,
+      'email id': emailId,
+      'address': address,
+      'city': city,
+      'zip code': zipCode,
+      'gender': gender,
+      'role': selectRole,
+    });
   }
 }

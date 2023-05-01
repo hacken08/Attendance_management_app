@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'Funcations.dart';
 
 
 
@@ -15,7 +16,8 @@ String zipCode = "";
 String selectRole = "Role";
 int radio = 1;
 String gender = "";
-
+String userInfo = "";
+List userDataList = Defined_Funation().getUserList() as List;
 
 String passowrd = "";
 String confirmPassword = "";
